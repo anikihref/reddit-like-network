@@ -1,0 +1,286 @@
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 50px;
+  margin: 50px 0;
+  position: relative;
+}
+
+.post {
+  color: var(--light-blue);
+  min-width: 500px;
+  width: 40%;
+  background-color: var(--dark);
+  border: 1px solid #333;
+}
+
+.post__top-section {
+  border-bottom: 1px solid var(--light-blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+
+
+.post__settings {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+  width: 30px;
+  align-items: flex-end;
+  cursor: pointer;
+  position: relative;
+}
+
+.post__settings-dot {
+  width: 5px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: var(--light-blue);
+}
+
+.post__user-account {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: fit-content;
+}
+
+.post__user-pfp {
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.post__user-pfp img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post__username {
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--dark);
+}
+
+.post__title-block {
+  margin: 10px 0;
+  padding: 0 10px;
+}
+
+.post__title-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+
+
+.post__img {
+  display: flex;
+  align-items: center;
+  background-color: var(--dark);
+  width: 100%;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+
+
+.post__img img {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.post__text-content {
+  padding: 0 10px;
+  line-height: 125%;
+  word-break: break-word;
+  margin: 10px 0;
+}
+
+.posts__add-btn {
+  position: absolute;
+  left: 20px;
+  top: -30px;
+  background-color: var(--dark);
+  color: var(--light-blue);
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.info-modal {
+  width: 50%;
+}
+
+.info-modal__title-block {
+  margin-bottom: 30px;
+}
+
+.info-modal__title-text {
+  word-break: break-word;
+}
+
+.info-modal__category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+
+.info-modal__category:not(:first-child) {
+  border-top: 1px solid var(--light-blue);
+}
+
+.info-modal__item-title {
+  font-weight: bold;
+  color: var(--mid-blue);
+}
+
+.info-modal__item-value {
+  
+}
+
+.modal__title-block {
+  margin-bottom: 20px;
+}
+
+.modal__title-text {
+  font-size: 1.5rem;
+  line-height: 120%;
+  max-width: 70%;
+}
+
+
+.modal__posts-input-importance {
+  margin-top: 5px;
+}
+
+.modal__posts-importance {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__posts-importance-label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+
+.modal__img-preview {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  max-width: 50vw;
+  background-color: rgb(212, 212, 212);
+  width: 60%;
+  -webkit-box-shadow: 0px 0px 16px 5px rgba(0,0,0,0.76); 
+  box-shadow: 0px 0px 16px 5px rgba(0,0,0,0.76);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+
+.modal__img-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.posts-form {
+  height: fit-content;
+
+  width: 95%;
+}
+
+.posts-form__step .inputs-block {
+  width: 100%;
+}
+
+.posts-form__step {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: posts-form-fade-in 500ms forwards; 
+}
+
+.posts-form__step-hidden {
+  animation: posts-form-fade-out 500ms forwards;
+}
+
+.hide {
+  display: none;
+}
+
+@keyframes posts-form-fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;  
+  }
+}
+
+
+@keyframes posts-form-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes post-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-300px) scale(70%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(100%);
+  }
+}
+
+@keyframes post-fade-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(100%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-300px) scale(70%);
+  }
+}
+
+
+
+.posts__post-enter {
+  animation: post-fade-in 500ms forwards;
+}
+
+.posts__post-exit {
+  animation: post-fade-out 500ms forwards;
+}
+
+
