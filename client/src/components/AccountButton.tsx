@@ -15,6 +15,7 @@ const AccountButton: FC<AccountButtonProps> = ({ children, hasContextMenu }) => 
     <div
       className="account-btn"
       onClick={() => setActiveUserMenu((prev) => !prev)}
+      data-context-trigger={hasContextMenu ? true : false}
     >
       <div className="account-btn__pfp">
         <img
@@ -25,7 +26,7 @@ const AccountButton: FC<AccountButtonProps> = ({ children, hasContextMenu }) => 
       <div className="account-btn__name">{loginedUser?.username}</div>
 
       {hasContextMenu && (
-        <ContextMenu isActive={activeUserMenu}>{children}</ContextMenu>
+        <ContextMenu isActive={activeUserMenu} setIsActive={setActiveUserMenu}>{children}</ContextMenu>
       )}
     </div>
   );
