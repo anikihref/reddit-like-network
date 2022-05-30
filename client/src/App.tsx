@@ -10,6 +10,7 @@ import useUser from './hook/useUser';
 import findUser from './helpers/findUser';
 import axios from 'axios';
 import getUserPosts from './helpers/getUserPosts';
+import MessagesStack from './components/MessagesStack';
 
 
 async function connect() {
@@ -23,7 +24,6 @@ async function connect() {
 function App() {
   const { setLoginedUser } = useUser();
   const navigate = useNavigate();
-
   
   useEffect(() => {
     (async () => {
@@ -75,6 +75,8 @@ function App() {
           <Route path="register" element={<RegistrationForm />} />
         </Route>
       </Routes>
+
+      <MessagesStack/>
     </>
   );
 }

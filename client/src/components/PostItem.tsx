@@ -61,13 +61,14 @@ const PostItem: FC<{ post: Post }> = ({ post }) => {
 
         <div
           className="post__settings"
+          data-context-trigger
           onClick={() => setAreSettingsActive((prev) => !prev)}
         >
           <div className="post__settings-dot"></div>
           <div className="post__settings-dot"></div>
           <div className="post__settings-dot"></div>
 
-          <ContextMenu isActive={areSettingsActive}>
+          <ContextMenu isActive={areSettingsActive} setIsActive={setAreSettingsActive}>
             <button
               className="context-menu__option"
               onClick={() => setIsInfoActive(true)}
