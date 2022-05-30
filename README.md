@@ -8,7 +8,7 @@ This is my first try to make my own single developed pet-project of social netwo
 
 
 ## TODO
-I`ll make some more pages: 
+TODOs:
   * Change authorization method to JWT
   * Chats using websockets
   * Post settings
