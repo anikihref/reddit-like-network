@@ -11,6 +11,7 @@ import findUser from './helpers/findUser';
 import axios from 'axios';
 import getUserPosts from './helpers/getUserPosts';
 import MessagesStack from './components/MessagesStack';
+import contextMenuCloser, { removeContextMenuCloser } from './helpers/contextMenuCloser';
 
 
 async function connect() {
@@ -26,6 +27,8 @@ function App() {
   const navigate = useNavigate();
   
   useEffect(() => {
+    contextMenuCloser();
+
     (async () => {
       const user: string | null = localStorage.getItem('anikihref-blog-app-x1')
 
@@ -51,6 +54,10 @@ function App() {
       }
     })()
     
+
+    return function() {
+      removeContextMenuCloser()
+    }
   }, []);
 
   return (
