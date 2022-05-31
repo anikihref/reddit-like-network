@@ -10,8 +10,9 @@ import useUser from './hook/useUser';
 import findUser from './helpers/findUser';
 import axios from 'axios';
 import getUserPosts from './helpers/getUserPosts';
-import MessagesStack from './components/MessagesStack';
+
 import contextMenuCloser, { removeContextMenuCloser } from './helpers/contextMenuCloser';
+import useMessages from './hook/useMessages';
 
 
 async function connect() {
@@ -25,16 +26,15 @@ async function connect() {
 function App() {
   const { setLoginedUser } = useUser();
   const navigate = useNavigate();
+  const {setMessages} = useMessages()
   
   useEffect(() => {
     contextMenuCloser();
 
     (async () => {
+      await connect()
+
       const user: string | null = localStorage.getItem('anikihref-blog-app-x1')
-
-      connect()
-      // console.log(user);
-
 
       if (user) {
         const [username, password] = user?.split('+');
@@ -82,8 +82,6 @@ function App() {
           <Route path="register" element={<RegistrationForm />} />
         </Route>
       </Routes>
-
-      <MessagesStack/>
     </>
   );
 }
