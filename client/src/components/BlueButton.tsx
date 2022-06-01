@@ -7,13 +7,14 @@ interface BlueAnimatedButtonProps {
   cb?: (arg: any) => any;
   btnType: 'link' | 'button';
   to?: string;
+  className?: string;
 }
 
-const BlueButton: FC<BlueAnimatedButtonProps> = ({ text, cb, btnType, to }) => {
+const BlueButton: FC<BlueAnimatedButtonProps> = ({ text, cb, btnType, to, className }) => {
   return (
     <>
       {btnType === 'button' ? (
-        <button onClick={cb ? cb : () => {}} className="blue-btn">
+        <button onClick={cb ? cb : () => {}} className={`blue-btn ${className ? className : ''}`}>
           <span className="blue-btn__text">{text}</span>
         </button>
       ) : 

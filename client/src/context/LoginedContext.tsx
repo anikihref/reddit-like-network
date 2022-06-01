@@ -7,17 +7,13 @@ interface ChildrenProp {
 
 export interface UserContext {
   loginedUser: User | null;
-  setLoginedUser:
-    (arg: (User | null) | ((arg2: User | null) => User)) => void
-
+  setLoginedUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
 export const IsLoginedContext = React.createContext<UserContext>({
   loginedUser: null,
   setLoginedUser: function () {},
 });
-
-
 
 const LoginedContext: FC<ChildrenProp> = ({ children }) => {
   const [loginedUser, setLoginedUser] = useState<User | null>(null);

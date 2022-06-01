@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import '../css/context-menu.css'
-import contextMenuCloser, { removeContextMenuCloser } from '../helpers/contextMenuCloser';
+import { addContextMenu, removeContextMenuCloser } from '../helpers/contextMenuCloser';
 
 interface ContextMenuProps {
   children: React.ReactNode;
@@ -13,12 +13,7 @@ const ContextMenu: FC<ContextMenuProps> = ({ children, isActive, setIsActive }) 
   const contextMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    console.log(2)
-    contextMenuCloser(setIsActive, contextMenuRef)
-
-    return function() {
-      removeContextMenuCloser()
-    }
+    addContextMenu(setIsActive, contextMenuRef)
   }, [])
 
 

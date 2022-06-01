@@ -6,11 +6,14 @@ import { Link } from 'react-router-dom';
 import findUser from '../../helpers/findUser';
 import BlueButton from '../../components/BlueButton';
 import getUserPosts from '../../helpers/getUserPosts';
+import useMessages from '../../hook/useMessages';
+import uniqid from 'uniqid'
 
 const LoginForm: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const { setLoginedUser } = useUser();
   const navigate = useNavigate();
+  const { setMessages } = useMessages();
 
   function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -21,12 +24,24 @@ const LoginForm: FC = () => {
     if ([username, password].every((element) => element.reportValidity())) {
       (async () => {
         const data = await findUser(username.value, password.value);
-        
+
         if (data) {
-          data.posts = await getUserPosts(data._id)
+          data.posts = await getUserPosts(data._id);
 
           setLoginedUser(data);
-          navigate('/profile', {replace: true})
+          setMessages((prev) => {
+            prev.push({
+              text: `Hi ${data.name}! Welcome to anikihref react blog`,
+              title: `${data.name} connected`,
+              id: uniqid()
+            });
+
+            return prev;
+          });
+
+         
+          navigate('/profile', { replace: true });
+          
         }
       })();
     }

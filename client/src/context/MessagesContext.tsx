@@ -7,7 +7,7 @@ interface ChildrenProp {
 
 export interface IMessageContext {
   messages: Message[];
-  setMessages: (arg: Message[] | ((arg: Message[]) => Message[])) => void
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>
 }
 
 export const MessagesContext = React.createContext<IMessageContext>({

@@ -1,5 +1,6 @@
 export default interface Message {
   text: string;
   title: string;
-  type: 'error' | 'succes';
+  type?: 'error' | 'succes';
+  readonly id: string;
 }

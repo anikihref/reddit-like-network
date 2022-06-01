@@ -1,15 +1,18 @@
 import React, { FC } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import useMessages from '../hook/useMessages';
 import useUser from '../hook/useUser';
 import AccountButton from './AccountButton';
 
 const Header: FC = () => {
   const { setLoginedUser } = useUser();
+  const { setMessages } = useMessages()
   const navigate = useNavigate()
 
   function handleLogOut() {
     localStorage.removeItem('anikihref-blog-app-x1');
     setLoginedUser(null);
+    setMessages([])
     navigate('/identification')
   }
 
