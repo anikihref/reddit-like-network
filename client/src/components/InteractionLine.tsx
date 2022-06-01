@@ -20,11 +20,8 @@ const InteractionLine: FC<InteractionLineProps> = ({ post }) => {
 
   async function checkIsLiked(): Promise<boolean> {
     const response = await axios({
-      method: 'post',
-      url: 'http://localhost:5000/post-likedby',
-      data: {
-        id: post._id,
-      }
+      method: 'get',
+      url: `http://localhost:5000/post-likes/${post._id}`
     })
     
     return await response.data.some((userId: string) => userId === loginedUser?._id)
@@ -37,7 +34,7 @@ const InteractionLine: FC<InteractionLineProps> = ({ post }) => {
 
     await axios({
       method: 'put',
-      url: 'http://localhost:5000/like-post',
+      url: 'http://localhost:5000/post-like',
       data: {
         likes,
         id: post._id,

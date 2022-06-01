@@ -95,7 +95,7 @@ const Profile = () => {
     ) as HTMLInputElement;
 
     const response = await axios({
-      url: 'http://localhost:5000/create-post',
+      url: 'http://localhost:5000/post',
       method: 'post',
       data: {
         title: title?.value,

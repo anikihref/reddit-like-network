@@ -8,6 +8,7 @@
 
 
 .messages-stack__item {
+  cursor: pointer;
   border-radius: 3px;
   background-color: #fff;
   width: 100%;
