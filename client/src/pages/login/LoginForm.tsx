@@ -7,12 +7,11 @@ import findUser from '../../helpers/findUser';
 import BlueButton from '../../components/BlueButton';
 import getUserPosts from '../../helpers/getUserPosts';
 import useMessages from '../../hook/useMessages';
-import uniqid from 'uniqid'
 import logIn from '../../helpers/logIn';
 
 const LoginForm: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const { loginedUser, setLoginedUser } = useUser();
+  const { setLoginedUser } = useUser();
   const navigate = useNavigate();
   const { setMessages } = useMessages();
 

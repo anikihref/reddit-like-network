@@ -12,7 +12,9 @@ function closeContextMenuListener(e: MouseEvent) {
   const target = (e.target as HTMLDivElement).closest(
     '[data-context-trigger="true"]'
   )
-    ? null
+    ? (e.target as HTMLDivElement).closest(
+      '[data-context-trigger="true"]'
+    )
     : e.target;
 
   // якщо місце куди ми клікнули не дорівнює контекстному меню або трігеру то ми закриваємо усі контекстні меню
