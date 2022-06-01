@@ -17,14 +17,14 @@ const MessagesStackItem: FC<{message: Message}> = ({ message }) => {
   }
 
   return (
-    <div className='messages-stack__message'>
-      <div className="messages-stack__message-content">
-        <div className="messages-stack__message-title">{ message.title }</div>
-        <div className="messages-stack__message-text">{ message.text }</div>
+    <div className='messages-stack__item'>
+      <div className="messages-stack__item-content">
+        <div className="messages-stack__item-title">{ message.title }</div>
+        <div className="messages-stack__item-text">{ message.text }</div>
       </div>
       
 
-      <BlueButton btnType='button' text='close' cb={handleClose} className="messages-stack__message-close" />
+      <BlueButton btnType='button' text='close' cb={handleClose} className="messages-stack__item-close" />
     </div>
   )
 }

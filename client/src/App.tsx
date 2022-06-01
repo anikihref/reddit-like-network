@@ -10,6 +10,8 @@ import useUser from './hook/useUser';
 import findUser from './helpers/findUser';
 import axios from 'axios';
 import getUserPosts from './helpers/getUserPosts';
+import uniqid from 'uniqid'
+
 
 import contextMenuCloser, { removeContextMenuCloser } from './helpers/contextMenuCloser';
 import useMessages from './hook/useMessages';
@@ -45,6 +47,15 @@ function App() {
           data.posts = await getUserPosts(data._id)
           
           setLoginedUser(data)
+          setMessages((prev) => {
+            prev.push({
+              text: `Hi ${data.name}! Welcome to anikihref react blog`,
+              title: `${data.name} connected`,
+              id: uniqid()
+            });
+
+            return prev;
+          });
           navigate('/profile')
         } else {
           navigate('/identification')

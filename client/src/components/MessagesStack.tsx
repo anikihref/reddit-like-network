@@ -1,19 +1,21 @@
-import React from 'react'
-import '../css/messages-stack.css'
-import useMessages from '../hook/useMessages'
-import MessagesStackItem from './MessagesStackItem'
+import React from 'react';
+import '../css/messages-stack.css';
+import useMessages from '../hook/useMessages';
+import MessagesStackItem from './MessagesStackItem';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const MessagesStack = () => {
-  const {messages} = useMessages()
-
+  const { messages } = useMessages();
 
   return (
-    <div className='messages-stack'>
-      {messages.map(message => {
-        return <MessagesStackItem key={message.id} message={message} />
-      })} 
-    </div>
-  )
-}
+    <TransitionGroup className="messages-stack">
+      {messages.map((message) => (
+        <CSSTransition key={message.id} timeout={300} classNames='messages-stack__item'>
+          <MessagesStackItem message={message} />
+        </CSSTransition>
+      ))}
+    </TransitionGroup>
+  );
+};
 
-export default MessagesStack
+export default MessagesStack;

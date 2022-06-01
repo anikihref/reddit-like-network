@@ -29,7 +29,6 @@ const LoginForm: FC = () => {
           data.posts = await getUserPosts(data._id);
 
           setLoginedUser(data);
-          navigate('/profile', { replace: true });
           setMessages((prev) => {
             prev.push({
               text: `Hi ${data.name}! Welcome to anikihref react blog`,
@@ -39,6 +38,10 @@ const LoginForm: FC = () => {
 
             return prev;
           });
+
+         
+          navigate('/profile', { replace: true });
+          
         }
       })();
     }
