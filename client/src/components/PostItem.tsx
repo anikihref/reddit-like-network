@@ -34,11 +34,9 @@ const PostItem: FC<{ post: Post }> = ({ post }) => {
   }
 
   async function handleLikedbyModalOpen() {
+    setUsersWhoLiked(await getPostLikes())
+
     setIsLikedByModalActive(true)
-
-    const responseData = await getPostLikes();
-
-    setUsersWhoLiked(responseData)
   } 
 
   async function getPostLikes(): Promise<User[]> {
@@ -90,9 +88,9 @@ const PostItem: FC<{ post: Post }> = ({ post }) => {
             setIsActive={setIsLikedByModalActive}
           >
 
-            {usersWhoLiked.map(user => {
+            {usersWhoLiked.toString() ? usersWhoLiked.map(user => {
               return <AccountButton key={user._id} hasContextMenu={false} /> 
-            })}
+            }) : 'No users liked'}
             
           </Modal>
 

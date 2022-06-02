@@ -3,4 +3,5 @@ export default interface Message {
   title: string;
   type?: 'error' | 'succes';
   readonly id: string;
+  callback?: (arg: any) => any;
 }
