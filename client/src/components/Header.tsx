@@ -18,27 +18,14 @@ const Header: FC = () => {
   return (
     <header className="header">
       <div className="header-navbar navbar">
-        <NavLink to="/" className="navbar__link">
-          Головна
-        </NavLink>
-
-        <NavLink to="/profile" className="navbar__link">
-          Профіль
-        </NavLink>
-        
-        <NavLink to="/chats" className="navbar__link">
-          Чати
-        </NavLink>
-        
-        <NavLink to="/search" className="navbar__link">
-          Пошук
-        </NavLink>
+        <NavLink className="navbar__link" to='/'>Головна</NavLink>
+        <NavLink className="navbar__link" to='/profile'>Профіль</NavLink>
+        <NavLink className="navbar__link" to='/chats'>Чати</NavLink>
+        <NavLink className="navbar__link" to='/search'>Пошук</NavLink>
       </div>
-
       <AccountButton hasContextMenu={true}>
         <Link
           to="/profile"
-          onClick={handleLogOut}
           className="context-menu__option"
         >
           Профіль
