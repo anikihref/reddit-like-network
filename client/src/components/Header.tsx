@@ -19,11 +19,11 @@ const Header: FC = () => {
     <header className="header">
       <div className="header-navbar navbar">
         <NavLink className="navbar__link" to='/'>Головна</NavLink>
-        <NavLink className="navbar__link" to='/profile'>Профіль</NavLink>
+        <NavLink className="navbar__link" to={`/profile`}>Профіль</NavLink>
         <NavLink className="navbar__link" to='/chats'>Чати</NavLink>
         <NavLink className="navbar__link" to='/search'>Пошук</NavLink>
       </div>
-      <AccountButton hasContextMenu={true}>
+      <AccountButton hasContextMenu={true} user={loginedUser!}>
         <Link
           to="/profile"
           className="context-menu__option"

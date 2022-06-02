@@ -1,15 +1,16 @@
 import React, { FC, useState } from 'react';
 import useUser from '../hook/useUser';
+import { User } from '../interfaces/user';
 import ContextMenu from './ContextMenu';
 
 interface AccountButtonProps {
   children?: React.ReactNode;
   hasContextMenu: boolean;
+  user: User;
 }
 
-const AccountButton: FC<AccountButtonProps> = ({ children, hasContextMenu }) => {
+const AccountButton: FC<AccountButtonProps> = ({ children, hasContextMenu, user }) => {
   const [activeUserMenu, setActiveUserMenu] = useState<boolean>(false);
-  const { loginedUser } = useUser();
 
   return (
     <div
@@ -19,11 +20,11 @@ const AccountButton: FC<AccountButtonProps> = ({ children, hasContextMenu }) => 
     >
       <div className="account-btn__pfp">
         <img
-          src={loginedUser?.pfp || require('../assets/img/anonymous-pfp.png')}
+          src={user?.pfp || require('../assets/img/anonymous-pfp.png')}
           alt="pfp"
         />
       </div>
-      <div className="account-btn__name">{loginedUser?.username}</div>
+      <div className="account-btn__name">{user?.username}</div>
 
       {hasContextMenu && (
         <ContextMenu isActive={activeUserMenu} setIsActive={setActiveUserMenu}>{children}</ContextMenu>

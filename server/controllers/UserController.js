@@ -42,6 +42,16 @@ const UserController = class {
     );
   }
 
+  async getByUserName(req, res) {
+    User.find({username: req.params.username}, function(err, users) {
+      if(err) {
+        console.log(err.message)
+      } else [
+        res.json(users)
+      ]
+    })
+  }
+
   getAll(req, res) {
     User.find(
       {

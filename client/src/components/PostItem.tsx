@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { findUsersByIds } from '../helpers/findUser';
 import useUser from '../hook/useUser';
 import { Post } from '../interfaces/post';
@@ -9,11 +10,18 @@ import ContextMenu from './ContextMenu';
 import InteractionLine from './InteractionLine';
 import Modal from './Modal';
 
-const PostItem: FC<{ post: Post }> = ({ post }) => {
+interface PostItemInterface {
+  post: Post;
+  access: 'owner' | 'guest';
+  author: User
+}
+
+const PostItem: FC<PostItemInterface> = ({ post, access, author }) => {
   const [areSettingsActive, setAreSettingsActive] = useState<boolean>(false);
   const [isInfoActive, setIsInfoActive] = useState<boolean>(false);
-  const [isLikedByModalActive, setIsLikedByModalActive] = useState<boolean>(false);
-  const [usersWhoLiked, setUsersWhoLiked] = useState<User[]>([])
+  const [isLikedByModalActive, setIsLikedByModalActive] =
+    useState<boolean>(false);
+  const [usersWhoLiked, setUsersWhoLiked] = useState<User[]>([]);
   const { setLoginedUser } = useUser();
 
   async function handlePostDelete() {
@@ -21,9 +29,9 @@ const PostItem: FC<{ post: Post }> = ({ post }) => {
       method: 'delete',
       url: 'http://localhost:5000/post',
       data: {
-        id: post._id
-      }
-    })
+        id: post._id,
+      },
+    });
 
     setLoginedUser((prev) => {
       return {
@@ -34,17 +42,16 @@ const PostItem: FC<{ post: Post }> = ({ post }) => {
   }
 
   async function handleLikedbyModalOpen() {
-    setUsersWhoLiked(await getPostLikes())
+    setUsersWhoLiked(await getPostLikes());
 
-    setIsLikedByModalActive(true)
-  } 
+    setIsLikedByModalActive(true);
+  }
 
   async function getPostLikes(): Promise<User[]> {
     const userIdsResponse = await axios({
       method: 'get',
-      url: `http://localhost:5000/post-likes/${post._id}`
-    })
-
+      url: `http://localhost:5000/post-likes/${post._id}`,
+    });
 
     return await findUsersByIds(await userIdsResponse.data);
   }
@@ -52,7 +59,7 @@ const PostItem: FC<{ post: Post }> = ({ post }) => {
   return (
     <div className="post posts__post">
       <div className="post__top-section">
-        <AccountButton hasContextMenu={false} />
+        <AccountButton hasContextMenu={false} user={author!} />
 
         <div
           className="post__settings"
@@ -63,7 +70,10 @@ const PostItem: FC<{ post: Post }> = ({ post }) => {
           <div className="post__settings-dot"></div>
           <div className="post__settings-dot"></div>
 
-          <ContextMenu isActive={areSettingsActive} setIsActive={setAreSettingsActive}>
+          <ContextMenu
+            isActive={areSettingsActive}
+            setIsActive={setAreSettingsActive}
+          >
             <button
               className="context-menu__option"
               onClick={() => setIsInfoActive(true)}
@@ -71,27 +81,36 @@ const PostItem: FC<{ post: Post }> = ({ post }) => {
               Інфомація
             </button>
 
-            <button className="context-menu__option" onClick={handleLikedbyModalOpen}>
+            <button
+              className="context-menu__option"
+              onClick={handleLikedbyModalOpen}
+            >
               Вподобайки
             </button>
 
-            <button className="context-menu__option" onClick={handlePostDelete}>
-              Видалити
-            </button>
+            {access === 'owner' && (
+              <button
+                className="context-menu__option"
+                onClick={handlePostDelete}
+              >
+                Видалити
+              </button>
+            )}
           </ContextMenu>
-
-
-
 
           <Modal
             isActive={isLikedByModalActive}
             setIsActive={setIsLikedByModalActive}
           >
-
-            {usersWhoLiked.toString() ? usersWhoLiked.map(user => {
-              return <AccountButton key={user._id} hasContextMenu={false} /> 
-            }) : 'No users liked'}
-            
+            {usersWhoLiked.toString()
+              ? usersWhoLiked.map((user) => {
+                  return (
+                    <Link className='post__user-like' to={`/profile/${user._id}`} key={user._id}>
+                      <AccountButton hasContextMenu={false} user={user} />
+                    </Link>
+                  );
+                })
+              : 'No users liked'}
           </Modal>
 
           {/* Модальне вікно з інформацією про пост */}

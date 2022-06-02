@@ -4,7 +4,7 @@ import Layout from './components/Layout';
 import './css/index.css';
 import Identification from './pages/identification/Identification';
 import LoginForm from './pages/login/LoginForm';
-import Profile from './pages/profile/Profile';
+import OwnerProfile from './pages/profile/OwnerProfile';
 import RegistrationForm from './pages/register/RegistrationForm';
 import useUser from './hook/useUser';
 import findUser from './helpers/findUser';
@@ -14,6 +14,8 @@ import contextMenuCloser, { removeContextMenuCloser } from './helpers/contextMen
 import useMessages from './hook/useMessages';
 import MessagesStack from './components/MessagesStack';
 import logIn from './helpers/logIn';
+import Search from './pages/search/Search';
+import GuestProfile from './pages/profile/GuestProfile';
 
 
 async function connect() {
@@ -25,7 +27,7 @@ async function connect() {
   });
 }
 function App() {
-  const { setLoginedUser } = useUser();
+  const { loginedUser ,setLoginedUser } = useUser();
   const navigate = useNavigate();
   const {setMessages} = useMessages()
   
@@ -65,9 +67,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index  />
-          <Route path='profile' element={<Profile />}/>
+          <Route path='profile/' element={<OwnerProfile />}/>
+          <Route path='profile/:id' element={<GuestProfile />}/>
           <Route path='chats' />
-          <Route path='search' />
+          <Route path='search' element={<Search />}/>
         </Route>
 
         <Route

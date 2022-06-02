@@ -79,7 +79,15 @@
   word-break: break-word;
 }
 
+.post__user-like {
+  width: 40vw;
+  min-width: 300px;
+}
 
+.post__user-like:not(:last-child) {
+  margin-bottom: 25px;
+  display: block;
+}
 
 .post__img {
   display: flex;
