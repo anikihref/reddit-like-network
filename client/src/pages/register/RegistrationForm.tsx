@@ -1,6 +1,5 @@
 import React, { FC, useRef } from 'react';
 import '../identification/identification.css';
-import uniqid from 'uniqid';
 import { useNavigate } from 'react-router-dom';
 import useUser from '../../hook/useUser';
 import { Link } from 'react-router-dom';
@@ -9,12 +8,15 @@ import axios from 'axios';
 import { User } from '../../interfaces/user';
 import readImgData from '../../helpers/readImgData';
 import findUser from '../../helpers/findUser';
-import getUserPosts from '../../helpers/getUserPosts';
+import logIn from '../../helpers/logIn';
+import useMessages from '../../hook/useMessages';
+
+
 
 async function createUser(user: Omit<User, '_id'>): Promise<User | null> {
   const response = await axios({
     method: 'post',
-    url: 'http://localhost:5000/create-user',
+    url: 'http://localhost:5000/user',
     data: user,
   });
 
@@ -25,6 +27,7 @@ const RegistrationForm: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const navigate = useNavigate();
   const { setLoginedUser } = useUser();
+  const { setMessages } = useMessages()
 
   function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -46,7 +49,6 @@ const RegistrationForm: FC = () => {
         const isUserLogined = !!await findUser(username.value, password.value);
 
         if (!isUserLogined) {
-          const imgData = await readImgData(pfp);
           const user = await createUser({
             name: firstName.value,
             age: parseInt(age.value),
@@ -55,17 +57,10 @@ const RegistrationForm: FC = () => {
             email: email.value,
             city: city.value,
             posts: [],
-            pfp: imgData,
+            pfp: await readImgData(pfp),
           });
 
-          setLoginedUser(user);
-
-          localStorage.setItem(
-            'anikihref-blog-app-x1',
-            `${username.value}+${password.value}`
-          );
-
-          navigate('/profile', { replace: true });
+          logIn(setLoginedUser, setMessages, {...user!, posts: []}, navigate)
         }
       })();
     }

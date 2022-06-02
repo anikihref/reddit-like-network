@@ -6,7 +6,7 @@ import { User } from '../interfaces/user';
 export default async function findUser(username: string, password: string): Promise<User | null> {
   const response = await axios({
     method: 'post',
-    url: 'http://localhost:5000/log-in',
+    url: 'http://localhost:5000/user-by-password',
     data: {
       username,
       password
@@ -20,7 +20,7 @@ export default async function findUser(username: string, password: string): Prom
 export async function findUsersByIds(userIds: string[]): Promise<User[]> {
   const usersResponse = await axios({
     method: 'post',
-    url: 'http://localhost:5000/get-users-byid',
+    url: `http://localhost:5000/users`,
     data: {
       ids: userIds
     }

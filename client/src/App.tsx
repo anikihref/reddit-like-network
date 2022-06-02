@@ -10,11 +10,10 @@ import useUser from './hook/useUser';
 import findUser from './helpers/findUser';
 import axios from 'axios';
 import getUserPosts from './helpers/getUserPosts';
-import uniqid from 'uniqid'
-
-
 import contextMenuCloser, { removeContextMenuCloser } from './helpers/contextMenuCloser';
 import useMessages from './hook/useMessages';
+import MessagesStack from './components/MessagesStack';
+import logIn from './helpers/logIn';
 
 
 async function connect() {
@@ -46,17 +45,7 @@ function App() {
           // отримуєм всі пости користувача і записуємо їх
           data.posts = await getUserPosts(data._id)
           
-          setLoginedUser(data)
-          setMessages((prev) => {
-            prev.push({
-              text: `Hi ${data.name}! Welcome to anikihref react blog`,
-              title: `${data.name} connected`,
-              id: uniqid()
-            });
-
-            return prev;
-          });
-          navigate('/profile')
+          logIn(setLoginedUser, setMessages, data, navigate)
         } else {
           navigate('/identification')
         }
@@ -93,6 +82,9 @@ function App() {
           <Route path="register" element={<RegistrationForm />} />
         </Route>
       </Routes>
+
+      <MessagesStack/>
+
     </>
   );
 }

@@ -16,9 +16,6 @@ const Layout: FC = () => {
         <Outlet />
       </main>
 
-
-      <MessagesStack/>
-
       <Footer />
     </div>
   )

@@ -19,7 +19,7 @@ const PostItem: FC<{ post: Post }> = ({ post }) => {
   async function handlePostDelete() {
     axios({
       method: 'delete',
-      url: 'http://localhost:5000/delete-post',
+      url: 'http://localhost:5000/post',
       data: {
         id: post._id
       }
@@ -36,18 +36,15 @@ const PostItem: FC<{ post: Post }> = ({ post }) => {
   async function handleLikedbyModalOpen() {
     setIsLikedByModalActive(true)
 
-    const responseData = await getUsersWhoLiked();
+    const responseData = await getPostLikes();
 
     setUsersWhoLiked(responseData)
-  }
+  } 
 
-  async function getUsersWhoLiked(): Promise<User[]> {
+  async function getPostLikes(): Promise<User[]> {
     const userIdsResponse = await axios({
-      method: 'post',
-      url: 'http://localhost:5000/post-likedby',
-      data: {
-        id: post._id
-      }
+      method: 'get',
+      url: `http://localhost:5000/post-likes/${post._id}`
     })
 
 
