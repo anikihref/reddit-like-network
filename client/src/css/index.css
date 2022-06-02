@@ -42,6 +42,22 @@ body {
 }
 
 .navbar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar__link {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--mid-blue);
+}
+
+.navbar__link.active {
+  color: var(--light-blue);
+}
+
+.header {
   position: relative;
   background-color: var(--dark);
   height: 100px;
@@ -49,13 +65,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-}
-
-.navbar__logo {
-  font-weight: 900;
-  color: var(--light-blue);
-  font-size: 1.5rem;
-  letter-spacing: 2px;
 }
 
 .account-btn__pfp {

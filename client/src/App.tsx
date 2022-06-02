@@ -64,7 +64,10 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path='profile' element={<Profile />} />
+          <Route index  />
+          <Route path='profile' element={<Profile />}/>
+          <Route path='chats' />
+          <Route path='search' />
         </Route>
 
         <Route
