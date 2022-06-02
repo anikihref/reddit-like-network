@@ -20,7 +20,7 @@ export default function logIn(
     return prev;
   });
 
-  navigate('/profile', { replace: true });
+  navigate('/', { replace: true });
   localStorage.setItem(
     'anikihref-blog-app-x1',
     `${data.username}+${data.password}`
