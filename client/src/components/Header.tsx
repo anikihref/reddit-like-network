@@ -6,12 +6,12 @@ import useUser from '../hook/useUser';
 import AccountButton from './AccountButton';
 
 const Header: FC = () => {
-  const { setLoginedUser } = useUser();
+  const { loginedUser ,setLoginedUser } = useUser();
   const { setMessages } = useMessages()
   const navigate = useNavigate()
 
   function handleLogOut() {
-    logOut(setLoginedUser, setMessages, navigate)
+    logOut(setLoginedUser, setMessages, loginedUser!,  navigate)
   }
 
   return (
