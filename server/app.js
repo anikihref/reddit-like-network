@@ -33,6 +33,7 @@ app.get('/connect', async (req, res) => {
 
 app.post('/user-by-password', UserController.getUserByPassword);
 app.post('/user', UserController.create);
+app.get('/user-by-username/:username', UserController.getByUserName);
 app.post('/users', UserController.getAll);
 
 

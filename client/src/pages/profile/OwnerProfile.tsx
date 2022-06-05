@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import BlueButton from '../../components/BlueButton';
 import Modal from '../../components/Modal';
 import PostItem from '../../components/PostItem';
@@ -11,7 +11,7 @@ import axios from 'axios';
 import { User } from '../../interfaces/user';
 import getUserPosts from '../../helpers/getUserPosts';
 
-const Profile = () => {
+const OwnerProfile: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [isActiveModal, setIsActiveModal] = useState<boolean>(false);
   const [imagePreview, setImagePreview] = useState<string | undefined>();
@@ -121,6 +121,7 @@ const Profile = () => {
 
   return (
     <div className="posts">
+
       <button
         className="posts__add-btn"
         onClick={() => setIsActiveModal(true)}
@@ -128,11 +129,12 @@ const Profile = () => {
       >
         add new post
       </button>
+      
 
       <TransitionGroup className={'posts'}>
         {loginedUser?.posts.map((post) => (
           <CSSTransition key={post._id} timeout={500} classNames="posts__post">
-            <PostItem post={post} />
+            <PostItem post={post} author={loginedUser} access='owner' />
           </CSSTransition>
         ))}
       </TransitionGroup>
@@ -237,4 +239,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default OwnerProfile;
