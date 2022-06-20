@@ -3,7 +3,7 @@ import BlueButton from '../../components/BlueButton';
 import Modal from '../../components/Modal';
 import PostItem from '../../components/PostItem';
 import useUser from '../../hook/useUser';
-import './posts.css';
+import './profile.css';
 import { importance } from '../../interfaces/post';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import readImgData from '../../helpers/readImgData';
@@ -190,9 +190,8 @@ const OwnerProfile: FC = () => {
             <div className="modal__btn-block btn-block">
               <BlueButton
                 btnType="button"
-                text="Далі"
                 cb={(e) => handleFormMove(e, 1)}
-              />
+              >Далі</BlueButton>
             </div>
           </div>
 
@@ -221,14 +220,12 @@ const OwnerProfile: FC = () => {
             <div className="modal__btn-block buttons-block">
               <BlueButton
                 btnType="button"
-                text="Назад"
                 cb={(e) => handleFormMove(e, -1)}
-              />
+              >Назад</BlueButton>
               <BlueButton
                 btnType="button"
-                text="Готово"
                 cb={handleCreatePost}
-              />
+              >Готово</BlueButton>
             </div>
           </div>
         </form>

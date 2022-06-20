@@ -140,9 +140,8 @@ const RegistrationForm: FC = () => {
       <div className="buttons-block">
         <BlueButton
           btnType="button"
-          text="Створити аккаунт"
           cb={handleSubmit}
-        />
+        >Створити аккаунт</BlueButton>
       </div>
     </form>
   );

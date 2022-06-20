@@ -3,6 +3,7 @@ import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AccountButton from '../../components/AccountButton';
 import BlueButton from '../../components/BlueButton';
+import Input from '../../components/Input';
 import useUser from '../../hook/useUser';
 import { User } from '../../interfaces/user';
 import './search.css'
@@ -38,15 +39,9 @@ const Search: FC = () => {
         onSubmit={(e) => e.preventDefault()}
         className="search__input-block"
       >
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          className="search__input"
-          placeholder='Логін користувача'
-        />
+        <Input placeholder='Логін користувача' value={value} setValue={setValue} />
 
-        <BlueButton btnType='button' text='Знайти' cb={handleFind} className='search__button' />
+        <BlueButton btnType='button' cb={handleFind} className='search__button'>Знайти</BlueButton>
       </form>
 
       {results.toString() ? <div className="search__results">
