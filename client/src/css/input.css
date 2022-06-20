@@ -1,0 +1,23 @@
+.input {
+  width: 70%;
+  transition: 200ms;
+  background-color: var(--mid-dark-blue);
+  border: none;
+  padding: 15px;
+  font-size: 1.2rem;
+  border-right: 3px solid var(--mid-dark-blue);
+  outline: none;
+  color: var(--dark);
+}
+
+.input:focus {
+  background-color: var(--mid-light-blue);
+}
+
+.input:focus.search__input::placeholder {
+  color: var(--dark);
+}
+
+.input::placeholder {
+  color: #fff;
+}

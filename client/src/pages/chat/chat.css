@@ -1,0 +1,21 @@
+.chats__content {
+  padding: 0 40px;
+  flex-direction: column;
+  margin-top: 60px;
+  column-gap: 40px;
+  row-gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.chats__item {
+  border-radius: 3px;
+} 
+
+.chats__item-title {
+
+}
+
+.chats__item-last {
+
+}

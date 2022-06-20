@@ -11,9 +11,9 @@ const Identification = () => {
       </div>
 
       <div className="buttons-block">
-        <BlueButton to='/identification/register' btnType='link' text='Зареєструватись' />
+        <BlueButton to='/identification/register' btnType='link' >Зареєструватись</BlueButton>
 
-        <BlueButton to='/identification/login' btnType='link' text='Увійти' />
+        <BlueButton to='/identification/login' btnType='link'>Увійти</BlueButton>
       </div>
     </div>
   );

@@ -16,18 +16,13 @@ import MessagesStack from './components/MessagesStack';
 import logIn from './helpers/logIn';
 import Search from './pages/search/Search';
 import GuestProfile from './pages/profile/GuestProfile';
+import Chat from './pages/chat/Chat';
+import ChatRoom from './pages/chat/ChatRoom';
 
 
-async function connect() {
-  await axios({
-    url: 'http://localhost:5000/connect',
-    method: 'get'
-  }).catch((e) => {
-    console.log('connect error', e);
-  });
-}
+
 function App() {
-  const { loginedUser ,setLoginedUser } = useUser();
+  const { setLoginedUser } = useUser();
   const navigate = useNavigate();
   const {setMessages} = useMessages()
   
@@ -35,7 +30,6 @@ function App() {
     contextMenuCloser();
 
     (async () => {
-      await connect()
 
       const user: string | null = localStorage.getItem('anikihref-blog-app-x1')
 
@@ -65,11 +59,14 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path='/chats/:id' element={<ChatRoom />} />
+
+
         <Route path="/" element={<Layout />}>
           <Route index  />
           <Route path='profile/' element={<OwnerProfile />}/>
           <Route path='profile/:id' element={<GuestProfile />}/>
-          <Route path='chats' />
+          <Route path='chats' element={<Chat />} />
           <Route path='search' element={<Search />}/>
         </Route>
 

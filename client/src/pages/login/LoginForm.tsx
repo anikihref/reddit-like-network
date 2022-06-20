@@ -63,7 +63,7 @@ const LoginForm: FC = () => {
       </div>
 
       <div className="buttons-block">
-        <BlueButton btnType="button" text="Увійти" cb={handleSubmit} />
+        <BlueButton btnType="button" cb={handleSubmit} >Увійти</BlueButton>
       </div>
     </form>
   );

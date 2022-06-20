@@ -32,10 +32,9 @@ const MessagesStackItem: FC<{
 
       <BlueButton
         btnType="button"
-        text="close"
         cb={handleClose}
         className="messages-stack__item-close"
-      />
+      >Закрити</BlueButton>
     </div>
   );
 };
